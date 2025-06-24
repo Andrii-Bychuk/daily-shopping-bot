@@ -1,6 +1,6 @@
 # Product Promo Notifier 🛍️
 
-This Python script automates the process of monitoring product promotions on the [Maudau](https://maudau.com.ua) website and sends relevant deals directly to a Telegram chat.
+This Python script automates the process of monitoring product promotions on the [Maudau](https://maudau.com.ua) and [Rozetka](https://rozetka.com.ua) websites and sends relevant deals directly to a Telegram chat.
 
 ---
 
@@ -8,7 +8,8 @@ This Python script automates the process of monitoring product promotions on the
 
 - Reads a list of products from a `.txt` file  
 - Generates search URLs based on the product list  
-- Parses product search results from maudau.com.ua  
+- Parses product search results from maudau.com.ua
+- Parses product search results from Rozetka.com.ua with Selenium
 - Extracts product name, price, and image  
 - Sends results to a Telegram chat with:
   - Text formatting
@@ -26,7 +27,8 @@ project/
 │   └── products.txt          # List of products to track
 ├── modules/
 │   ├── products.py           # File reading logic
-│   ├── maudau.py             # Website parsing logic
+│   ├── maudau.py             # maudau parsing logic
+│   ├── rozetka_selenium.py   # rozetka parsing logic
 │   └── telegram.py           # Telegram message sending logic (optional)
 ```
 
@@ -37,6 +39,7 @@ project/
 - Python 3.10+
 - [requests](https://pypi.org/project/requests/)
 - [beautifulsoup4](https://pypi.org/project/beautifulsoup4/)
+- [selenium](https://pypi.org/project/selenium/)
 
 Install dependencies:
 
@@ -81,6 +84,9 @@ python main.py
 ```
 🛒 Green Tea Ahmad
 💰 109 ₴
+🏷️ -38%
+Old price: 130 ₴
+From: Maudau
 🔗 View Product → https://maudau.com.ua/search?text=green%20tea
 ```
 
