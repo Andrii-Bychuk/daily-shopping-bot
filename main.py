@@ -1,9 +1,11 @@
 """
 Main point
 """
-from modules.maudau import MaudauParser
+import json
+
+from modules.maudau import AllParser
 from modules.telegram_bot import TelegramBot
 
 if __name__ == "__main__":
-    maudau = MaudauParser()
+    maudau = AllParser()
     tg_bot = TelegramBot(maudau.result)
