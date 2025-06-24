@@ -53,6 +53,7 @@ Create a file called `config.py` in the root directory with the following conten
 ```python
 TG_API_TOKEN = "YOUR TELEGRAM API TOKEN"
 CHAT_ID = "YOUR TELEGRAM CHAT ID"
+SEARCH_PRODUCT_LIMIT = 5 # How many products will be parsed from query
 ```
 
 > ⚠️ Make sure to add `config.py` to `.gitignore` so you don’t commit it to GitHub.

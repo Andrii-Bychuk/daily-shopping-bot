@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 from urllib.parse import quote
 from modules.products import ReadFile
+from config import SEARCH_PRODUCT_LIMIT
 
 
 class MaudauParser:
@@ -45,7 +46,7 @@ class MaudauParser:
 
     def parse_pages(self):
         for response in self.all_response:
-            five_products = response.find_all(class_="md-css-19huojj", limit=5)
+            five_products = response.find_all(class_="md-css-19huojj", limit=SEARCH_PRODUCT_LIMIT)
             for product in five_products:
                 product_query = self.list_of_products[self.all_response.index(response)]
                 product_name = product.find(class_="chakra-text md-css-bt097k").getText()
@@ -54,12 +55,22 @@ class MaudauParser:
                 clean_price = product_price.replace("\xa0", " ")
                 product_url = product.find("a")["href"]
 
+                # Promo options
+                try:
+                    discount = product.find(class_="chakra-text md-css-bwyhlm").getText()
+                    old_price = product.find(class_="chakra-text md-css-1o7tnuo").getText()
+                except AttributeError:
+                    discount = None
+                    old_price = None
+
                 self.result.append(
                     {
                         "product_query": product_query,
                         "product_name": product_name,
                         "image": product_image,
                         "price": clean_price,
-                        "url": product_url
+                        "url": product_url,
+                        "discount": discount if discount else "No Discount",
+                        "old_price": old_price if old_price else "No Old price"
                     }
                 )

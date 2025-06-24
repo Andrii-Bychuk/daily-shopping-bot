@@ -16,6 +16,8 @@ class TelegramBot:
             caption = {
                 f"🛒 *{data["product_name"]}*\n"
                 f"💰 {data["price"]}\n"
+                f"🏷️ {data["discount"]}\n"
+                f"Old price: {data["old_price"]}\n"
                 f"🔗 [Go to product]({data["url"]})"
             }
 
