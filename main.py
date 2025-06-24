@@ -2,6 +2,8 @@
 Main point
 """
 from modules.maudau import MaudauParser
+from modules.telegram_bot import TelegramBot
 
-maudau = MaudauParser()
-print(maudau.list_of_products)
+if __name__ == "__main__":
+    maudau = MaudauParser()
+    tg_bot = TelegramBot(maudau.result)
