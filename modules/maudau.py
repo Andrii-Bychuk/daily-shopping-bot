@@ -57,7 +57,6 @@ class AllParser:
                 elif "rozetka" in base_url_key:
                     rozetka_object = RozetkaSelenium(full_url)
                     response = rozetka_object.result_html
-                    #page = response.text
                     soup = BeautifulSoup(response, "html.parser")
                     inner_list.append(soup)
 
@@ -65,7 +64,12 @@ class AllParser:
 
 
     def parse_pages(self):
+        """
+        Parse given pages and get needed data
+        :return: list with inner dictionaries with all needed data
+        """
         for base_url, response_list in self.all_response.items():
+            # Maudau
             if "maudau" in base_url:
                 for response in response_list:
                     received_products = response.find_all(class_="md-css-19huojj", limit=SEARCH_PRODUCT_LIMIT)
@@ -81,10 +85,13 @@ class AllParser:
                             discount = product.find(class_="chakra-text md-css-bwyhlm").getText()
                             old_price = product.find(class_="chakra-text md-css-1o7tnuo").getText()
                             clean_old_price = old_price.replace("\xa0", " ")
+
+                        # If promo doesn't exist - assign None to variables
                         except AttributeError:
                             discount = None
                             clean_old_price = None
 
+                        # Add data to list
                         self.result.append(
                             {
                                 "website": "Maudau",
@@ -96,6 +103,7 @@ class AllParser:
                                 "old_price": clean_old_price if clean_old_price else "No Old price"
                             }
                         )
+            # Rozetka
             elif "rozetka" in base_url:
                 for response in response_list:
                     received_products = response.find_all(class_="catalog-grid__cell catalog-grid__cell_type_slim",
@@ -112,10 +120,13 @@ class AllParser:
                             discount = product.find(class_="goods-tile__label promo-label promo-label_"
                                                            "type_action").getText()
                             old_price = product.find(class_="goods-tile__price--old price--gray").getText()
+
+                        # If promo doesn't exist - assign None to variables
                         except AttributeError:
                             discount = None
                             old_price = None
 
+                        # Add data to list
                         self.result.append(
                             {
                                 "website": "Rozetka",

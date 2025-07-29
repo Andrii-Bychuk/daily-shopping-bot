@@ -1,14 +1,13 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
 class RozetkaSelenium:
+    """
+    Processes JS from website by Selenium and save pure html in object.
+    """
 
-    def __init__(self, query:str):
+    def __init__(self, query: str):
         # Keep Chrome browser open after program finishes
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--headless")
@@ -17,7 +16,7 @@ class RozetkaSelenium:
         chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                                     "(KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36")
 
-        # Create anf configure the Chrome webdriver
+        # Create and configure the Chrome webdriver
         self.driver = webdriver.Chrome(options=chrome_options)
         self.query = query
         self.result_html = ''
