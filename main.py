@@ -2,7 +2,7 @@
 Main point
 """
 
-from modules.maudau import AllParser
+from modules.all_parser import AllParser
 from modules.telegram_bot import TelegramBot
 
 if __name__ == "__main__":
