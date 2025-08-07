@@ -17,7 +17,7 @@ class AllParser:
         self.all_response = {}
         self.list_of_products = ReadFile().return_list_of_products
         self.dict_of_search_urls = self.create_dict_of_full_urls()
-        self.result = []
+        self.data_to_send = []
 
         self.fetch_pages()
         self.parse_pages()
@@ -92,7 +92,7 @@ class AllParser:
                             clean_old_price = None
 
                         # Add data to list
-                        self.result.append(
+                        self.data_to_send.append(
                             {
                                 "website": "Maudau",
                                 "product_name": product_name,
@@ -127,7 +127,7 @@ class AllParser:
                             old_price = None
 
                         # Add data to list
-                        self.result.append(
+                        self.data_to_send.append(
                             {
                                 "website": "Rozetka",
                                 "product_name": product_name,
