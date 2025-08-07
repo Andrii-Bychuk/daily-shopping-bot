@@ -23,15 +23,18 @@ This Python script automates the process of monitoring product promotions on the
 ```
 project/
 ├── main.py
+├── requirements.txt        # Dependencies including pytest
 ├── data/
-│   └── products.txt          # List of products to track
+│   └── products.txt        # List of products to track
 ├── modules/
-│   ├── all_parser.py         # Main parser coordinating site scraping and data aggregation
-│   ├── exceptions.py         # Custom exception
-│   ├── products.py           # Logic for reading product list file
-│   ├── maudau.py             # Maudau parsing logic
-│   ├── rozetka_selenium.py   # Rozetka parsing logic
-│   └── telegram.py           # Telegram message sending logic (optional)
+│   ├── all_parser.py       # Main parser coordinating site scraping and data aggregation
+│   ├── exceptions.py       # Custom exceptions
+│   ├── products.py         # Logic for reading product list file
+│   ├── maudau.py           # Maudau parsing logic
+│   ├── rozetka_selenium.py # Rozetka parsing logic
+│   └── telegram.py         # Telegram message sending logic (optional)
+├── tests/
+│   └── test_products.py    # Unit tests
 ```
 
 ---
