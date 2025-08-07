@@ -26,9 +26,11 @@ project/
 ├── data/
 │   └── products.txt          # List of products to track
 ├── modules/
-│   ├── products.py           # File reading logic
-│   ├── maudau.py             # maudau parsing logic
-│   ├── rozetka_selenium.py   # rozetka parsing logic
+│   ├── all_parser.py         # Main parser coordinating site scraping and data aggregation
+│   ├── exceptions.py         # Custom exception
+│   ├── products.py           # Logic for reading product list file
+│   ├── maudau.py             # Maudau parsing logic
+│   ├── rozetka_selenium.py   # Rozetka parsing logic
 │   └── telegram.py           # Telegram message sending logic (optional)
 ```
 
@@ -76,7 +78,7 @@ instant coffee
 2. Run the main script:
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 3. If Telegram integration is enabled, you will receive messages like:

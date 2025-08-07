@@ -3,24 +3,33 @@ import requests
 from urllib.parse import quote
 from modules.products import ReadFile
 from modules.rozetka_selenium import RozetkaSelenium
+from modules.exceptions import ProductFileEmptyError, ProductFileMissingError
 from config import SEARCH_PRODUCT_LIMIT
 
 
 class AllParser:
     """
-    Class for search given products
+    Parses product search results from predefined websites.
+    Fetches and stores data in self.data_to_send (list of dicts or error string).
     """
 
     def __init__(self):
         self.start_url_search = ["https://maudau.com.ua/search?text=",
                                  "https://rozetka.com.ua/ua/search/?text="]
         self.all_response = {}
-        self.list_of_products = ReadFile().return_list_of_products
-        self.dict_of_search_urls = self.create_dict_of_full_urls()
-        self.data_to_send = []
 
-        self.fetch_pages()
-        self.parse_pages()
+        try:
+            self.list_of_products = ReadFile().products
+            self.dict_of_search_urls = self.create_dict_of_full_urls()
+            self.data_to_send = []
+
+            self.fetch_pages()
+            self.parse_pages()
+
+        # Handle error message to sent into Telegram bot
+        except (ProductFileMissingError, ProductFileEmptyError) as e:
+            self.data_to_send = str(e)
+            return
 
 
     def create_dict_of_full_urls(self) -> dict:
